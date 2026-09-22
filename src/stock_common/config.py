@@ -1,0 +1,145 @@
+"""Project-level configuration.
+
+Model IDs here are deployment placeholders. Replace these values with the real
+model names used by your environment; selection logic should not need edits.
+"""
+
+from __future__ import annotations
+
+
+MODEL_PROFILES_CONFIG: tuple[dict[str, object], ...] = (
+    {
+        "model_id": "finance-chat-fast",
+        "provider": "configured",
+        "model_name_env": "FINANCE_CHAT_FAST_MODEL_NAME",
+        "base_url_env": "FINANCE_CHAT_FAST_BASE_URL",
+        "api_key_env": "FINANCE_CHAT_FAST_API_KEY",
+        "timeout_seconds_env": "FINANCE_CHAT_FAST_TIMEOUT_SECONDS",
+        "max_retries_env": "FINANCE_CHAT_FAST_MAX_RETRIES",
+        "supported_functions": ("chat",),
+        "supported_difficulties": ("easy",),
+        "capabilities": ("json_output",),
+        "quality_score": 0.68,
+        "latency_score": 0.96,
+        "cost_score": 0.94,
+        "max_input_tokens": 16_000,
+    },
+    {
+        "model_id": "finance-chat-balanced",
+        "provider": "configured",
+        "model_name_env": "FINANCE_CHAT_BALANCED_MODEL_NAME",
+        "base_url_env": "FINANCE_CHAT_BALANCED_BASE_URL",
+        "api_key_env": "FINANCE_CHAT_BALANCED_API_KEY",
+        "timeout_seconds_env": "FINANCE_CHAT_BALANCED_TIMEOUT_SECONDS",
+        "max_retries_env": "FINANCE_CHAT_BALANCED_MAX_RETRIES",
+        "supported_functions": ("chat",),
+        "supported_difficulties": ("easy", "medium"),
+        "capabilities": ("json_output", "tool_calling"),
+        "quality_score": 0.82,
+        "latency_score": 0.76,
+        "cost_score": 0.70,
+        "max_input_tokens": 32_000,
+    },
+    {
+        "model_id": "finance-chat-strong",
+        "provider": "configured",
+        "model_name_env": "FINANCE_CHAT_STRONG_MODEL_NAME",
+        "base_url_env": "FINANCE_CHAT_STRONG_BASE_URL",
+        "api_key_env": "FINANCE_CHAT_STRONG_API_KEY",
+        "timeout_seconds_env": "FINANCE_CHAT_STRONG_TIMEOUT_SECONDS",
+        "max_retries_env": "FINANCE_CHAT_STRONG_MAX_RETRIES",
+        "supported_functions": ("chat", "task_parser"),
+        "supported_difficulties": ("medium", "hard"),
+        "capabilities": ("json_output", "long_context", "reasoning", "tool_calling"),
+        "quality_score": 0.92,
+        "latency_score": 0.55,
+        "cost_score": 0.45,
+        "max_input_tokens": 64_000,
+    },
+    {
+        "model_id": "finance-research-balanced",
+        "provider": "configured",
+        "model_name_env": "FINANCE_RESEARCH_BALANCED_MODEL_NAME",
+        "base_url_env": "FINANCE_RESEARCH_BALANCED_BASE_URL",
+        "api_key_env": "FINANCE_RESEARCH_BALANCED_API_KEY",
+        "timeout_seconds_env": "FINANCE_RESEARCH_BALANCED_TIMEOUT_SECONDS",
+        "max_retries_env": "FINANCE_RESEARCH_BALANCED_MAX_RETRIES",
+        "supported_functions": ("factor_research", "task_parser"),
+        "supported_difficulties": ("easy", "medium"),
+        "capabilities": ("json_output", "tool_calling"),
+        "quality_score": 0.82,
+        "latency_score": 0.72,
+        "cost_score": 0.68,
+        "max_input_tokens": 32_000,
+    },
+    {
+        "model_id": "finance-research-strong",
+        "provider": "configured",
+        "model_name_env": "FINANCE_RESEARCH_STRONG_MODEL_NAME",
+        "base_url_env": "FINANCE_RESEARCH_STRONG_BASE_URL",
+        "api_key_env": "FINANCE_RESEARCH_STRONG_API_KEY",
+        "timeout_seconds_env": "FINANCE_RESEARCH_STRONG_TIMEOUT_SECONDS",
+        "max_retries_env": "FINANCE_RESEARCH_STRONG_MAX_RETRIES",
+        "supported_functions": ("factor_research", "task_parser"),
+        "supported_difficulties": ("medium", "hard"),
+        "capabilities": ("json_output", "long_context", "reasoning", "tool_calling"),
+        "quality_score": 0.97,
+        "latency_score": 0.42,
+        "cost_score": 0.34,
+        "max_input_tokens": 128_000,
+    },
+    {
+        "model_id": "router-classifier-local",
+        "provider": "local",
+        "model_path_env": "ROUTER_CLASSIFIER_MODEL_PATH",
+        "model_version_env": "ROUTER_CLASSIFIER_MODEL_VERSION",
+        "supported_functions": ("router_classifier",),
+        "supported_difficulties": ("easy", "medium", "hard"),
+        "capabilities": ("json_output",),
+        "quality_score": 0.76,
+        "latency_score": 0.99,
+        "cost_score": 1.00,
+        "max_input_tokens": 512,
+    },
+)
+
+
+MODEL_SELECTION_WEIGHTS_CONFIG: dict[str, dict[str, float]] = {
+    "easy": {
+        "quality": 0.20,
+        "latency": 0.45,
+        "cost": 0.35,
+    },
+    "medium": {
+        "quality": 0.45,
+        "latency": 0.30,
+        "cost": 0.25,
+    },
+    "hard": {
+        "quality": 0.72,
+        "latency": 0.15,
+        "cost": 0.13,
+    },
+}
+
+
+WEB_SEARCH_CONFIG: dict[str, object] = {
+    "api_url_env": "FINANCE_WEB_SEARCH_API_URL",
+    "api_key_env": "FINANCE_WEB_SEARCH_API_KEY",
+    "workspace_env": "FINANCE_WEB_SEARCH_WORKSPACE",
+    "service_id_env": "FINANCE_WEB_SEARCH_SERVICE_ID",
+    "query_rewrite_env": "FINANCE_WEB_SEARCH_QUERY_REWRITE",
+    "top_k_env": "FINANCE_WEB_SEARCH_TOP_K",
+    "content_type_env": "FINANCE_WEB_SEARCH_CONTENT_TYPE",
+    "way_env": "FINANCE_WEB_SEARCH_WAY",
+    "timeout_seconds_env": "FINANCE_WEB_SEARCH_TIMEOUT_SECONDS",
+    "max_retries_env": "FINANCE_WEB_SEARCH_MAX_RETRIES",
+    "default_query_rewrite": True,
+    "default_workspace": "default",
+    "default_service_id": "ops-web-search-001",
+    "default_top_k": 5,
+    "default_content_type": "snippet",
+    "default_way": "pro",
+    "default_timeout_seconds": 30,
+    "default_max_retries": 1,
+}

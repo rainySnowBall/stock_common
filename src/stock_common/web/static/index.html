@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finance Research</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="会话">
+        <div class="sidebar-header">
+          <div class="brand-mark">FR</div>
+          <div>
+            <div class="brand-title">Finance Research</div>
+            <div class="brand-subtitle">local</div>
+          </div>
+        </div>
+        <button class="new-chat-button" id="newChatButton" type="button">
+          <span aria-hidden="true">+</span>
+          <span>新对话</span>
+        </button>
+        <div class="session-panel">
+          <div class="panel-label">当前会话</div>
+          <div class="session-id" id="sessionId">未创建</div>
+        </div>
+        <div class="sidebar-footer">
+          <div class="health-dot" id="healthDot"></div>
+          <span id="healthText">连接中</span>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="topbar">
+          <div>
+            <h1>Finance Research</h1>
+            <p id="turnState">等待输入</p>
+          </div>
+        </header>
+
+        <section class="messages" id="messages" aria-live="polite">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-title">Finance Research</div>
+            <div class="prompt-grid">
+              <button class="prompt-chip" type="button">ROE 是什么？</button>
+              <button class="prompt-chip" type="button">测试过去五年 ROE 因子的表现</button>
+              <button class="prompt-chip" type="button">先查 PE，再回测低 PE 策略</button>
+            </div>
+          </div>
+        </section>
+
+        <form class="composer" id="composer">
+          <div class="composer-options">
+            <label class="toggle-option" title="需要最新新闻、行情或公告时开启">
+              <input id="webSearchToggle" type="checkbox" />
+              <span>联网搜索</span>
+            </label>
+          </div>
+          <textarea
+            id="messageInput"
+            rows="1"
+            placeholder="输入金融查询或因子研究请求"
+            autocomplete="off"
+          ></textarea>
+          <button id="sendButton" type="submit" aria-label="发送">
+            <span>发送</span>
+          </button>
+        </form>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

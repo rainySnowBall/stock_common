@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.env
+**/.env
+!.env.example
+
+# Local data and generated artifacts
+data/
+output/
+tmp/
+*.log
+
+# Test/build/cache output
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.sqlite
+*.sqlite3

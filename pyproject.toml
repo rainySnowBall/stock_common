@@ -1,0 +1,15 @@
+[project]
+name = "stock-common"
+version = "0.1.0"
+description = "Common components for finance agent workflows."
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+data-fetch = [
+    "pandas>=2.0",
+    "tushare>=1.4.21",
+]
+
+[tool.unittest]
+start-directory = "tests"
+pattern = "test_*.py"
