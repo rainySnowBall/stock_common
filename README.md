@@ -195,13 +195,7 @@ python -c "import sys; from pathlib import Path; sys.path.insert(0, str(Path('sr
 
 如果 `TUSHARE_HTTP_URL` 是代理地址但仍返回 token 错误，说明请求已经走代理，下一步应检查 `src/stock_common/.env` 里的 `TUSHARE_TOKEN` 是否被代理服务接受。
 
-### Web UI 名称还是旧的
 
-浏览器可能缓存了静态文件。刷新页面或重启本地服务后应显示：
-
-```text
-Finance Research
-```
 
 ## 相关设计文档
 
